@@ -1,0 +1,39 @@
+# Définition des enums
+enum TypeCompte {
+    COURANT
+    EPARGNE
+}
+
+# Définition des types
+type Compte {
+    id: ID
+    solde: Float
+    dateCreation: String
+    type: TypeCompte
+}
+
+type SoldeStats {
+    count: Int    # Nombre total de comptes
+    sum: Float    # Somme des soldes
+    average: Float # Moyenne des soldes
+}
+
+# Définition des requêtes (Query)
+type Query {
+    allComptes: [Compte]
+    compteById(id: ID): Compte
+    totalSolde: SoldeStats
+    comptesByType(type: TypeCompte!): [Compte]
+}
+
+# Définition des mutations (Mutation)
+type Mutation {
+    saveCompte(compte: CompteRequest): Compte
+}
+
+# Définition des inputs
+input CompteRequest {
+    solde: Float
+    dateCreation: String
+    type: TypeCompte
+}
